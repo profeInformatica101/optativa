@@ -10,154 +10,229 @@
     h1, h2 { color: #0d6efd; }
     pre { background: #f1f3f5; padding: 1rem; border-radius: .5rem; }
     .ejercicio { border-left: 4px solid #0d6efd; padding-left: 1rem; margin-bottom: 2rem; }
+    .tiempo { font-size: 0.9rem; color: #198754; }
+    code { color: darkgreen; font-weight: bold; background-color: #fff3cd; }
+    mark { background-color: #fff3cd; padding: .1rem .25rem; border-radius: .25rem; }
+
+    /* ----- Layout de dos columnas con sidebar de altura estable ----- */
+    .layout { min-height: 100vh; }
+    .sidebar {
+      position: sticky;
+      top: 1rem;                    /* se fija 1rem desde la parte superior */
+      background-color: #ffffff;
+      border-radius: .5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,.1);
+      padding: 1rem;
+      height: calc(100vh - 2rem);   /* misma altura que la ventana menos márgenes */
+      overflow: auto;               /* scroll interno si el menú es largo */
+    }
+    .sidebar a {
+      display: block;
+      color: #0d6efd;
+      padding: .5rem .75rem;
+      border-radius: .25rem;
+      text-decoration: none;
+    }
+    .sidebar a:hover,
+    .sidebar a:focus { background-color: #e7f1ff; outline: none; }
+    .sidebar a.active { font-weight: bold; background-color: #0d6efd; color: white; }
   </style>
 </head>
 
 <body>
-<div class="container py-5">
-  <h1 class="text-center mb-4">🧩 Práctica RA1 – Control de Versiones con Git y PHP</h1>
+<div class="container-fluid py-4 layout">
+  <div class="row g-4">
+    <!-- 🧭 Sidebar de navegación accesible -->
+    <nav class="col-lg-3 col-md-4 sidebar" aria-label="Menú de secciones">
+      <h5 class="text-center mb-3">📘 Menú de prácticas</h5>
+      <a href="#ej1" class="active">🧰 Ejercicio 1</a>
+      <a href="#ej2">💾 Ejercicio 2</a>
+      <a href="#ej3">🧩 Ejercicio 3</a>
+      <a href="#ej4">🌿 Ejercicio 4</a>
+      <a href="#ej5">⚙️ Ejercicio 5</a>
+      <a href="#ej6">🤝 Ejercicio 6</a>
+      <a href="#ej7">🧠 Ejercicio 7</a>
+      <hr>
+      <a href="#evaluacion" class="text-success">✅ Evaluación RA1</a>
+    </nav>
 
-  <p class="lead text-center">
-    <strong>Duración total:</strong> 2 horas &nbsp;·&nbsp;
-    <span class="badge bg-primary">Trabajo individual</span>
-  </p>
+    <!-- 📄 Contenido principal -->
+    <main class="col-lg-9 col-md-8">
+      <h1 class="text-center mb-4">🧩 RA1 – Control de Versiones con Git y PHP</h1>
 
-  <div class="alert alert-info mt-4">
-    <strong>Repositorio base:</strong> 
-    <a href="https://github.com/profeInformatica101/mi_sitio_dinamico" target="_blank">
-      https://github.com/profeInformatica101/mi_sitio_dinamico
-    </a>
-  </div>
+      <p class="lead text-center">
+        <strong>Duración total:</strong> 2 h &nbsp;·&nbsp;
+        <span class="badge bg-primary">Trabajo Individual</span>
+      </p>
 
-  <hr class="my-4">
+      <div class="alert alert-info mt-4">
+        <strong>Repositorio base:</strong> 
+        <a href="https://github.com/profeInformatica101/mi_sitio_dinamico" target="_blank" rel="noopener">
+          https://github.com/profeInformatica101/mi_sitio_dinamico
+        </a>
+      </div>
 
-  <section>
-    <h2>🎯 Objetivos generales</h2>
-    <ul>
-      <li>Comprender los fundamentos del control de versiones.</li>
-      <li>Configurar un entorno de desarrollo con Git y PHP.</li>
-      <li>Aplicar operaciones básicas y trabajo con ramas en GitHub.</li>
-      <li>Ejecutar commits y fusiones para controlar el ciclo de cambios.</li>
-    </ul>
-  </section>
+      <hr class="my-4">
 
-  <hr>
-
-  <!-- EJERCICIO 1 -->
-  <section class="ejercicio">
-    <h2>🧰 Ejercicio 1 – Configuración e inicialización del entorno (criterio b)</h2>
-    <p><strong>Duración estimada:</strong> 30 minutos</p>
-
-    <ol>
-      <li>Realiza un <strong>fork</strong> del repositorio base en tu cuenta de GitHub.</li>
-      <li>Clona tu fork localmente:
-        <pre><code>git clone https://github.com/tu_usuario/mi_sitio_dinamico.git</code></pre>
-      </li>
-      <li>Abre el proyecto en <strong>Visual Studio Code</strong>.</li>
-      <li>Configura tu identidad de Git (solo la primera vez):
-        <pre><code>git config --global user.name "Tu Nombre"
-git config --global user.email "tu_correo@ejemplo.com"</code></pre>
-      </li>
-      <li>Verifica el estado del repositorio:
-        <pre><code>git status</code></pre>
-      </li>
-      <li>Ejecuta el proyecto desde tu servidor local (XAMPP o Apache) y comprueba que se carga correctamente en:
-        <code>http://localhost/mi_sitio_dinamico</code>
-      </li>
-    </ol>
-  </section>
-
-  <hr>
-
-  <!-- EJERCICIO 2 -->
-  <section class="ejercicio">
-    <h2>💾 Ejercicio 2 – Operaciones básicas de control de versiones (criterio c)</h2>
-    <p><strong>Duración estimada:</strong> 45 minutos</p>
-
-    <p>
-      En este ejercicio aprenderás a registrar, enviar y sincronizar cambios reales en código PHP usando Git y GitHub.
-    </p>
-
-    <ol>
-      <li>Abre el archivo <code>elementos/contenido.php</code> y modifica el código:
+      <section>
+        <h2>🎯 Objetivos generales</h2>
         <ul>
-          <li>Cambia el bucle <code>for</code> por un <code>foreach</code>.</li>
-          <li>Usa la función <code>htmlspecialchars()</code> para mostrar los productos de forma segura.</li>
+          <li>Comprender los fundamentos del control de versiones.</li>
+          <li>Configurar un entorno local de trabajo con Git y PHP.</li>
+          <li>Realizar commits, push y pull correctamente.</li>
+          <li>Crear ramas, fusionarlas y resolver conflictos simples.</li>
+          <li>Aplicar buenas prácticas de documentación de cambios.</li>
         </ul>
+      </section>
 
+      <hr>
+
+      <!-- 🔧 Ejercicio 1 -->
+      <section class="ejercicio" id="ej1">
+        <h2>🧰 Ejercicio 1 – Configuración e inicialización (criterio <mark>b</mark>)</h2>
+        <p class="tiempo">⏱️ Duración estimada: 30 minutos</p>
+        <ol>
+          <li>Haz un <strong>fork</strong> del repositorio base.</li>
+          <li>Clona tu fork:
+            <pre><code>git clone https://github.com/tu_usuario/mi_sitio_dinamico.git</code></pre>
+          </li>
+          <li>Abre el proyecto en Visual Studio Code y configura tu identidad de Git:
+            <pre><code>git config --global user.name "Tu Nombre"
+git config --global user.email "tu_correo@ejemplo.com"</code></pre>
+          </li>
+          <li>Verifica el estado:
+            <pre><code>git status
+git log --oneline</code></pre>
+          </li>
+          <li>Ejecuta el sitio en tu servidor local:
+            <code>http://localhost/mi_sitio_dinamico</code>
+          </li>
+        </ol>
+      </section>
+
+      <!-- 💾 Ejercicio 2 -->
+      <section class="ejercicio" id="ej2">
+        <h2>💾 Ejercicio 2 – Confirmaciones y envío (criterio <mark>c</mark>)</h2>
+        <p class="tiempo">⏱️ Duración estimada: 25 minutos</p>
+        <p>Abre <code>elementos/contenido.php</code> y cambia el bucle <code>for</code> por <code>foreach</code>.</p>
         <pre><code>&lt;?php
 $productos = ["Pan de Camas", "Aceitunas aliñadas", "Tortas de aceite"];
 foreach ($productos as $p) {
   echo "&lt;li class='list-group-item'&gt;" . htmlspecialchars($p) . "&lt;/li&gt;";
 }
-?&gt;
-        </code></pre>
-      </li>
-
-      <li>Guarda los cambios y realiza las siguientes operaciones:
+?&gt;</code></pre>
+        <p>Confirma y sube los cambios:</p>
         <pre><code>git add elementos/contenido.php
-git commit -m "Reemplazado bucle for por foreach en listado de productos"
+git commit -m "Reemplazado bucle for por foreach"
 git push origin main</code></pre>
-      </li>
+      </section>
 
-      <li>Verifica en GitHub que tu cambio aparece reflejado en el historial del repositorio.</li>
-    </ol>
-  </section>
+      <!-- 🧩 Ejercicio 3 -->
+      <section class="ejercicio" id="ej3">
+        <h2>🧩 Ejercicio 3 – Commit adicional (criterio <mark>c</mark>)</h2>
+        <p class="tiempo">⏱️ Duración estimada: 15 minutos</p>
+        <ol>
+          <li>Agrega un nuevo producto al array de <code>contenido.php</code>.</li>
+          <li>Realiza commit y observa el historial:
+            <pre><code>git log --oneline --graph</code></pre>
+          </li>
+        </ol>
+      </section>
 
-  <hr>
-
-  <!-- EJERCICIO 3 -->
-  <section class="ejercicio">
-    <h2>🌿 Ejercicio 3 – Trabajo con ramas y fusión de versiones (criterio d)</h2>
-    <p><strong>Duración estimada:</strong> 45 minutos</p>
-
-    <ol>
-      <li>Crea una nueva rama para añadir mejoras visuales:
-        <pre><code>git checkout -b mejora-header</code></pre>
-      </li>
-
-      <li>Abre <code>elementos/header.php</code> y agrega un título o barra de navegación de Bootstrap:</li>
-
-      <pre><code>&lt;nav class="navbar navbar-expand-lg navbar-dark bg-primary"&gt;
-  &lt;div class="container-fluid"&gt;
-    &lt;a class="navbar-brand" href="#"&gt;Mi sitio dinámico&lt;/a&gt;
-    &lt;div class="navbar-nav"&gt;
-      &lt;a class="nav-link active" href="#"&gt;Productos&lt;/a&gt;
-      &lt;a class="nav-link" href="#"&gt;Contacto&lt;/a&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/nav&gt;
-      </code></pre>
-
-      <li>Guarda los cambios y haz commit:
-        <pre><code>git add elementos/header.php
-git commit -m "Añadido menú de navegación Bootstrap en header"</code></pre>
-      </li>
-
-      <li>Vuelve a la rama principal y combina los cambios:
-        <pre><code>git checkout main
+      <!-- 🌿 Ejercicio 4 -->
+      <section class="ejercicio" id="ej4">
+        <h2>🌿 Ejercicio 4 – Crear y combinar ramas (criterio <mark>d</mark>)</h2>
+        <p class="tiempo">⏱️ Duración estimada: 30 minutos</p>
+        <ol>
+          <li>Crea una rama nueva:
+            <pre><code>git checkout -b mejora-header</code></pre>
+          </li>
+          <li>Edita <code>header.php</code> y agrega una barra de navegación Bootstrap.</li>
+          <li>Haz merge a <code>main</code> y sube los cambios:
+            <pre><code>git add elementos/header.php
+git commit -m "Añadida barra de navegación Bootstrap"
+git checkout main
 git merge mejora-header
 git push origin main</code></pre>
-      </li>
+          </li>
+        </ol>
+      </section>
 
-      <li>Comprueba en tu navegador que el menú se muestra correctamente.</li>
-    </ol>
-  </section>
+      <!-- ⚙️ Ejercicio 5 -->
+      <section class="ejercicio" id="ej5">
+        <h2>⚙️ Ejercicio 5 – Rama experimental y volver atrás (criterio <mark>d</mark>)</h2>
+        <p class="tiempo">⏱️ Duración estimada: 20 minutos</p>
+        <pre><code>git checkout -b experimentar-footer
+# Modifica elementos/footer.php (nuevo texto)
+git add elementos/footer.php
+git commit -m "Prueba de modificación del footer"
+git checkout main
+git branch -D experimentar-footer</code></pre>
+        <p>Verifica que el footer original sigue intacto.</p>
+      </section>
 
-  <hr>
+      <!-- 🤝 Ejercicio 6 -->
+      <section class="ejercicio" id="ej6">
+        <h2>🤝 Ejercicio 6 – Simular un conflicto y resolverlo (criterio <mark>d</mark>)</h2>
+        <p class="tiempo">⏱️ Duración estimada: 30 minutos</p>
+        <pre><code>git checkout -b conflicto-titulo
+# Cambia el &lt;h1&gt; en elementos/header.php a "Mi Sitio Dinámico PHP"
+git add .
+git commit -m "Título cambiado a 'Mi Sitio Dinámico PHP'"
+git checkout main
+# Cambia el mismo &lt;h1&gt; a "Bienvenido a Camas"
+git add .
+git commit -m "Título cambiado a 'Bienvenido a Camas'"
+git merge conflicto-titulo
+# Resuelve el conflicto dejando: "Bienvenido a Camas – Mi Sitio Dinámico PHP"
+git add elementos/header.php
+git commit -m "Conflicto resuelto combinando títulos"</code></pre>
+      </section>
 
-  <div class="alert alert-success mt-4">
-    <h5>✅ Evaluación RA1</h5>
-    <ul>
-      <li><strong>b)</strong> Configura un entorno de trabajo e inicializa un repositorio.</li>
-      <li><strong>c)</strong> Ejecuta operaciones básicas de control de versiones (commit, push, pull).</li>
-      <li><strong>d)</strong> Trabaja con ramas para gestionar distintas versiones del proyecto.</li>
-    </ul>
+      <!-- 🧠 Ejercicio 7 -->
+      <section class="ejercicio" id="ej7">
+        <h2>🧠 Ejercicio 7 – Desafío: mejora real del sitio</h2>
+        <p class="tiempo">⏱️ Duración estimada: 30 minutos</p>
+        <ul>
+          <li>Crea <code>elementos/contacto.php</code> con una tarjeta Bootstrap (dirección, teléfono, email y horario).</li>
+          <li>Añade <code>Contacto</code> al menú en <code>header.php</code> y permite acceder con:
+            <code>index.php?p=contacto</code>.</li>
+        </ul>
+        <div class="alert alert-warning mt-3">
+          💭 <strong>Reto:</strong> ¿Cómo hacer que el menú destaque la sección actual con clase <code>active</code> sin duplicar código?
+        </div>
+        <details class="mt-3">
+          <summary class="fw-bold text-primary">💡 Pistas</summary>
+          <ul class="mt-2">
+            <li>Usa <code>$p = $_GET['p'] ?? 'inicio'</code> en <code>index.php</code>.</li>
+            <li>En <code>header.php</code>, aplica: <code><?= ($p==='contacto') ? 'active' : '' ?></code>.</li>
+            <li>Genera el menú desde un array con <code>foreach</code>.</li>
+          </ul>
+        </details>
+      </section>
+
+      <hr>
+
+      <!-- ✅ Evaluación RA1 (texto exacto + marcado en b, c, d) -->
+      <div id="evaluacion" class="alert alert-success mt-4">
+        <h5>✅ RA1: Utiliza herramientas de control de versiones para la gestión de proyectos de desarrollo.</h5>
+        <p class="mb-1"><strong>Criterios de Evaluación:</strong></p>
+        <ul class="mb-0">
+          <li>a) Se han identificado los conceptos básicos de los sistemas de control de versiones.</li>
+          <li><mark>b) Se ha configurado un entorno de trabajo y se ha inicializado un repositorio.</mark></li>
+          <li><mark>c) Se han ejecutado operaciones básicas de control de versiones, como realizar confirmaciones, enviar y recibir cambios, y combinar ramas.</mark></li>
+          <li><mark>d) Se ha trabajado con ramas para gestionar diferentes versiones del proyecto.</mark></li>
+          <li>e) Se han resuelto conflictos en la gestión de versiones colaborativas.</li>
+          <li>f) Se ha configurado un repositorio remoto y se ha trabajado con solicitudes de integración de cambios.</li>
+          <li>g) Se han utilizado estrategias de trabajo en equipo dentro de un entorno de control de versiones.</li>
+        </ul>
+      </div>
+
+      <p class="text-center text-muted mt-5">
+        &copy; <?php echo date('Y'); ?> – IES Camas · Desarrollo de Aplicaciones Web
+      </p>
+    </main>
   </div>
-
-  <p class="text-center text-muted mt-5">
-    &copy; <?php echo date('Y'); ?> – IES Camas · Desarrollo de Aplicaciones Web
-  </p>
 </div>
 </body>
 </html>
